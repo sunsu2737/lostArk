@@ -1,0 +1,26 @@
+{% extends  'base.html' %}
+     {% block content %}
+        <table class="table" class="thead-inverse">
+            <thead>
+                <tr> 
+                    <th>레이드</th>
+                    
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for title in titles %}
+                <tr>
+                    <td><a href="{% url 'guide' boss_id=title.boss_id %}">{{title.title}}</a></td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+          
+        </table>
+        <div class="mb-4">
+            <a href="{% url 'create' %}" class="btn btn-info"><b>글쓰기</b></a>
+        </div> 
+  {% endblock %}
