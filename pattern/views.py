@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from rest_framework.views import APIView
 from .models import Pattern,Boss
+from .form import PatternForm
 # Create your views here.
 
 
@@ -29,12 +30,14 @@ class GuideCreate(APIView):
 
 
     def get(self,request):
-        bosses=Boss.objects.all()
-        bosses=[boss.boss for boss in bosses]
-        print(bosses)
-        modes=['노말','하드','헬','리허설','어비스']
-        phases=['1','2','3','4','5','6','7']
-        return render(request,'create.html',context={'bosses':bosses,'modes':modes,'phases':phases})
+        form=PatternForm()
+        return render(request,'create.html',context={'form':form})
+        # bosses=Boss.objects.all()
+        # bosses=[boss.boss for boss in bosses]
+        # print(bosses)
+        # modes=['노말','하드','헬','리허설','어비스']
+        # phases=['1','2','3','4','5','6','7']
+        # return render(request,'create.html',context={'bosses':bosses,'modes':modes,'phases':phases})
     def post(self,request):
         boss=request.data.get('boss')
         mode=request.data.get('mode')
